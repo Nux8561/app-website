@@ -3,7 +3,7 @@ export const siteConfig = {
   product: process.env.NEXT_PUBLIC_PRODUCT_NAME || 'IntroGroup Sales Intelligence',
   description:
     'KI-gestützte Vertriebsintelligenz für den deutschen B2B-Mittelstand. Deep Research in unter 60 Sekunden.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || `https://${process.env.NEXT_PUBLIC_MARKETING_DOMAIN || 'de.introgroup'}`,
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://web.introki.app',
   appUrl: `https://${process.env.NEXT_PUBLIC_APP_DOMAIN || 'introgroupgermany.com'}`,
   ogImage: '/og.png',
   localeDefault: (process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de') as 'de' | 'en',

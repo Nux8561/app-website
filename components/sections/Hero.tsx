@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { Prism } from '@/components/ui/prism';
+import { AuroraBackground } from '@/components/ui/aurora-background';
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-accent/10">
+    <AuroraBackground className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(139,92,246,0.06),transparent_50%)]" />
+        <Prism className="absolute inset-0 w-full h-full opacity-20" />
       </div>
 
       <div className="container px-4 md:px-6">
@@ -93,7 +94,7 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </AuroraBackground>
   );
 }
 

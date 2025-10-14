@@ -2,43 +2,41 @@
 
 import { cn } from '@/lib/utils';
 
-export function AuroraBackground({
-  children,
-  className,
-}: {
+interface AuroraBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cn('relative overflow-hidden', className)}>
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(139,92,246,0.06),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.04),transparent_50%)]" />
-      </div>
-      {children}
-    </div>
-  );
 }
 
-export function GlassCard({
-  children,
+export const AuroraBackground = ({
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+  children,
+  ...props
+}: AuroraBackgroundProps) => {
   return (
-    <div
+    <main
       className={cn(
-        'rounded-lg border border-border/50 bg-background/50 backdrop-blur-md',
-        'shadow-lg transition-all hover:shadow-xl',
-        className
+        'relative flex flex-col h-[100vh] items-center justify-center bg-zinc-50 dark:bg-zinc-900 text-slate-950 transition-bg',
+        className,
       )}
+      {...props}
     >
-      {children}
-    </div>
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          //   I'm sorry but I am not going to write inline styles for an entire gradient background
+          className="absolute -inset-[10px] opacity-50"
+          style={{
+            background: `
+              radial-gradient(800px circle at 100px 100px, rgba(120, 119, 198, 0.3), transparent 40%),
+              radial-gradient(600px circle at 40% 40%, rgba(120, 119, 198, 0.3), transparent 40%),
+              radial-gradient(400px circle at 60% 60%, rgba(120, 119, 198, 0.3), transparent 40%),
+              radial-gradient(800px circle at 100% 100%, rgba(120, 119, 198, 0.3), transparent 40%)
+            `,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-purple-500/20 blur-3xl" />
+      </div>
+      <div className="relative z-20 flex flex-col items-center justify-center">
+        {children}
+      </div>
+    </main>
   );
-}
-
+};
