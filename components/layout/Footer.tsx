@@ -1,4 +1,4 @@
-import { Dribbble, Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 
@@ -26,7 +26,7 @@ const data = {
     livechat: '/de/contact',
   },
   contact: {
-    email: siteConfig.contactEmail,
+    email: siteConfig.contact.email,
     phone: '+49 123 456789',
     address: 'Berlin, Germany',
   },

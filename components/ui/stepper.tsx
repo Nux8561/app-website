@@ -105,7 +105,7 @@ function useStepper() {
    if (context === undefined)
       throw new Error('useStepper must be used within a StepperProvider')
 
-   const { children, className, ...rest } = context
+   const { ...rest } = context
 
    const isLastStep = context.activeStep === context.steps.length - 1
    const hasCompletedAllSteps = context.activeStep === context.steps.length
@@ -312,6 +312,8 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
    },
 )
 
+Stepper.displayName = 'Stepper'
+
 Stepper.defaultProps = {
    size: 'md',
    orientation: 'horizontal',
@@ -329,7 +331,7 @@ function VerticalContent({ children }: { children: React.ReactNode }) {
          {React.Children.map(children, (child, i) => {
             const isCompletedStep
           = (React.isValidElement(child)
-          && (child.props as any).isCompletedStep)
+          && (child.props as { isCompletedStep?: boolean }).isCompletedStep)
           ?? i < activeStep
             const isLastStep = i === stepCount - 1
             const isCurrentStep = i === activeStep
@@ -402,8 +404,8 @@ interface StepInternalConfig {
 
 interface FullStepProps extends StepProps, StepInternalConfig {}
 
-const Step = React.forwardRef<HTMLLIElement, StepProps>(
-   (props, ref: React.Ref<any>) => {
+const Step = React.forwardRef<HTMLDivElement, StepProps>(
+   (props, ref: React.Ref<HTMLDivElement>) => {
       const {
          children,
          description,
@@ -459,6 +461,8 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
       return renderStep()
    },
 )
+
+Step.displayName = 'Step'
 
 // <---------- VERTICAL STEP ---------->
 
@@ -641,6 +645,8 @@ const VerticalStep = React.forwardRef<HTMLDivElement, VerticalStepProps>(
    },
 )
 
+VerticalStep.displayName = 'VerticalStep'
+
 // <---------- HORIZONTAL STEP ---------->
 
 const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
@@ -747,6 +753,8 @@ const HorizontalStep = React.forwardRef<HTMLDivElement, StepSharedProps>(
    },
 )
 
+HorizontalStep.displayName = 'HorizontalStep'
+
 // <---------- STEP BUTTON CONTAINER ---------->
 
 type StepButtonContainerProps = StepSharedProps & {
@@ -804,7 +812,7 @@ function StepButtonContainer({
 
 // <---------- STEP ICON ---------->
 
-type IconType = LucideIcon | React.ComponentType<any> | undefined
+type IconType = LucideIcon | React.ComponentType<React.SVGProps<SVGSVGElement>> | undefined
 
 const iconVariants = cva('', {
    variants: {
@@ -929,6 +937,8 @@ const StepIcon = React.forwardRef<HTMLDivElement, StepIconProps>(
       ])
    },
 )
+
+StepIcon.displayName = 'StepIcon'
 
 // <---------- STEP LABEL ---------->
 

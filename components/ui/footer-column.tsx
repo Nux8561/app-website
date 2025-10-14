@@ -1,5 +1,4 @@
 import {
-  Dribbble,
   Facebook,
   Github,
   Instagram,
