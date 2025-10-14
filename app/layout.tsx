@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { siteConfig } from '@/config/site';
+import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Analytics } from '@vercel/analytics/next';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -53,24 +55,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const plausibleDomain = siteConfig.analytics.plausibleDomain;
 
   return (
-    <html lang="de" suppressHydrationWarning className={inter.variable}>
-      <head>
-        {plausibleDomain && (
-          <script
-            defer
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
-        )}
-      </head>
-      <body className="min-h-screen bg-background font-sans antialiased">
-        <div className="relative flex min-h-screen flex-col">
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Analytics />
-      </body>
-    </html>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+      <html lang="de" suppressHydrationWarning className={inter.variable}>
+        <head>
+          {plausibleDomain && (
+            <script
+              defer
+              data-domain={plausibleDomain}
+              src="https://plausible.io/js/script.js"
+            />
+          )}
+        </head>
+        <body className="min-h-screen bg-background font-sans antialiased">
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Analytics />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
 

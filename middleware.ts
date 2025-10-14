@@ -1,21 +1,32 @@
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 const PUBLIC_FILE = /\.(.*)$/;
 const DEFAULT_LOCALE = process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de';
 const SUPPORTED_LOCALES = ['de', 'en'];
 
-export function middleware(req: NextRequest) {
+// Clerk: Define protected routes (none for marketing site - all public)
+const isProtectedRoute = createRouteMatcher([]);
+
+export default clerkMiddleware(async (auth, req) => {
+  // Protect routes if needed (currently all marketing routes are public)
+  if (isProtectedRoute(req)) {
+    await auth.protect();
+  }
+
+  // i18n locale routing
   const { pathname } = req.nextUrl;
 
-  // Skip middleware for public files, API routes, and Next.js internals
+  // Skip for public files, API routes, Clerk routes
   if (
     PUBLIC_FILE.test(pathname) ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/demo')
+    pathname.startsWith('/demo') ||
+    pathname.includes('/sign-in') ||
+    pathname.includes('/sign-up')
   ) {
-    return;
+    return NextResponse.next();
   }
 
   // Check if pathname already has a locale
@@ -29,18 +40,16 @@ export function middleware(req: NextRequest) {
     url.pathname = `/${DEFAULT_LOCALE}${pathname}`;
     return NextResponse.redirect(url);
   }
-}
+
+  return NextResponse.next();
+});
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization)
-     * - favicon.ico (favicon)
-     * - public files (images, etc)
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\..*|api).*)',
+    // Skip Next.js internals and all static files
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
   ],
 };
 
