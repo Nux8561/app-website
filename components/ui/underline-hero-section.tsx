@@ -118,7 +118,7 @@ const Navigation: React.FC<{ brand?: string; onSignIn?: () => void }> = ({ brand
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
       if (!menuOpen) return;
-      if (menuRef.current && !menuRef.current.contains(e.target as Node) and triggerRef.current && !triggerRef.current.contains(e.target as Node)) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node) && triggerRef.current && !triggerRef.current.contains(e.target as Node)) {
         setMenuOpen(false);
       }
     };
@@ -127,7 +127,7 @@ const Navigation: React.FC<{ brand?: string; onSignIn?: () => void }> = ({ brand
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!menuOpen and triggerRef.current) triggerRef.current.focus();
+    if (!menuOpen && triggerRef.current) triggerRef.current.focus();
   }, [menuOpen]);
 
   const navItems = [
