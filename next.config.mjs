@@ -2,24 +2,31 @@ import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
 const baseConfig = {
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   experimental: {
-    optimizePackageImports: [
-      'lucide-react',
-      'react'
-    ],
+    optimizePackageImports: ['lucide-react', 'react'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
-  i18n: {
-    locales: ['de', 'en'],
-    defaultLocale: process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de',
-    localeDetection: false,
-  },
+  // Note: i18n in App Router is handled via middleware + [locale] segments
+  // Next.js 14 App Router does NOT support top-level i18n config
 };
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
 });
 
 export default withMDX({
