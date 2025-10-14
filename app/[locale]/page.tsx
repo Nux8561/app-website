@@ -1,5 +1,5 @@
 import { Hero } from '@/components/sections/Hero';
-import { Features } from '@/components/sections/Features';
+import { FeaturesWithCharacters } from '@/components/sections/FeaturesWithCharacters';
 import { BentoGridFeatures } from '@/components/sections/BentoGridFeatures';
 import { IntegrationsBeam } from '@/components/sections/IntegrationsBeam';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Features />
+      <FeaturesWithCharacters />
       <BentoGridFeatures />
       <IntegrationsBeam />
       <TestimonialsSection
