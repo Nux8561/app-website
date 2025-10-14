@@ -39,6 +39,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/de/blog"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={siteConfig.appUrl}
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >

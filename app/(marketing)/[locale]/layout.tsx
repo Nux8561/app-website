@@ -73,8 +73,19 @@ export default function MarketingLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const plausibleDomain = siteConfig.analytics.plausibleDomain;
+
   return (
     <html lang={params.locale || 'de'} suppressHydrationWarning className={inter.variable}>
+      <head>
+        {plausibleDomain && (
+          <script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <div className="relative flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
