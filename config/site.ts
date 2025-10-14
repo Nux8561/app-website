@@ -9,7 +9,7 @@ export const siteConfig = {
   localeDefault: (process.env.NEXT_PUBLIC_DEFAULT_LOCALE || 'de') as 'de' | 'en',
   locales: ['de', 'en'] as const,
   contact: {
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@introgroupgermany.com',
+    email: 'vertrieb@introgroupgermany.com',
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '',
   },
   socials: {

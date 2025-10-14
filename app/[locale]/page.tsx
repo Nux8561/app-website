@@ -1,6 +1,7 @@
 import { Hero } from '@/components/sections/Hero';
 import { FeaturesWithCharacters } from '@/components/sections/FeaturesWithCharacters';
 import { BentoGridFeatures } from '@/components/sections/BentoGridFeatures';
+import { HowItWorksStepper } from '@/components/sections/HowItWorksStepper';
 import { IntegrationsBeam } from '@/components/sections/IntegrationsBeam';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { CTA } from '@/components/sections/CTA';
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <FeaturesWithCharacters />
       <BentoGridFeatures />
+      <HowItWorksStepper />
       <IntegrationsBeam />
       <TestimonialsSection
         title="Was unsere Kunden sagen"

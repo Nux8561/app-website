@@ -29,7 +29,7 @@ export function CTA() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <Link
-              href={siteConfig.appUrl}
+              href="/de/auth"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
             >
               Kostenlos testen

@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { AuroraBackground } from '@/components/ui/aurora-background';
 import { siteConfig } from '@/config/site';
+import { Compare } from '@/components/ui/compare';
 
 const solutions = {
   'b2b-prospecting': {
@@ -114,32 +115,15 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
       </AuroraBackground>
 
       <div className="container px-4 py-16 md:px-6">
-        <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2">
-          <div>
-            <h2 className="mb-6 text-2xl font-bold text-destructive">Das Problem</h2>
-            <p className="mb-6 text-lg">{solution.problem}</p>
-            <ul className="space-y-3">
-              {solution.pain.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="mt-1 text-destructive">✗</span>
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="mb-6 text-2xl font-bold text-primary">Das Ergebnis</h2>
-            <p className="mb-6 text-lg font-semibold">{solution.outcome}</p>
-            <ul className="space-y-3">
-              {solution.outcomes.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <Check className="mt-1 h-5 w-5 shrink-0 text-primary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mx-auto flex justify-center">
+          <Compare
+            firstImage="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&h=720&fit=crop" 
+            secondImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&h=240&q=80" 
+            firstImageClassName="object-cover object-left-top"
+            secondImageClassname="object-cover object-left-top"
+            className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
+            slideMode="hover"
+          />
         </div>
 
         <div className="mx-auto mt-24 max-w-4xl">

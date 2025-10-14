@@ -1,6 +1,14 @@
-import { Dribbble, Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import {
+  Dribbble,
+  Facebook,
+  Github,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from 'lucide-react';
 import Link from 'next/link';
-import { siteConfig } from '@/config/site';
 
 const data = {
   facebookLink: 'https://facebook.com/introgroupgermany',
@@ -26,13 +34,14 @@ const data = {
     livechat: '/de/contact',
   },
   contact: {
-    email: siteConfig.contactEmail,
+    email: 'vertrieb@introgroupgermany.com',
     phone: '+49 123 456789',
     address: 'Berlin, Germany',
   },
   company: {
-    name: siteConfig.name,
-    description: siteConfig.description,
+    name: 'Intro Group Germany',
+    description:
+      'KI-gestützte Vertriebsintelligenz für den deutschen B2B-Mittelstand. Deep Research in unter 60 Sekunden.',
     logo: '/logo.png',
   },
 };
@@ -42,6 +51,7 @@ const socialLinks = [
   { icon: Instagram, label: 'Instagram', href: data.instaLink },
   { icon: Twitter, label: 'Twitter', href: data.twitterLink },
   { icon: Github, label: 'GitHub', href: data.githubLink },
+  // Dribbble removed as it's less common for B2B SaaS
 ];
 
 const aboutLinks = [
@@ -69,7 +79,7 @@ const contactInfo = [
   { icon: MapPin, text: data.contact.address, isAddress: true },
 ];
 
-export function Footer() {
+export default function Footer4Col() {
   return (
     <footer className="bg-secondary dark:bg-secondary/20 mt-16 w-full place-self-end rounded-t-xl">
       <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">

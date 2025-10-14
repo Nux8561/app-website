@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Check } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { CheckIcon, XIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -9,134 +9,151 @@ export const metadata: Metadata = {
     'Transparente Preise für IntroGroup Sales Intelligence. Wählen Sie den Plan, der zu Ihrem Business passt.',
 };
 
-const plans = [
+const pricingPlans = [
   {
-    name: 'Starter',
+    title: 'Free',
+    subtitle: 'Für den Einstieg',
+    price: '0€',
+    period: '/ Monat',
+    description: 'Ideal, um IntroGroup Sales Intelligence kennenzulernen.',
+    buttonText: 'Kostenlos starten',
+    features: [
+      { text: '10 Deep Researches pro Monat', included: true },
+      { text: 'Basis Life Coach', included: true },
+      { text: 'Google Calendar Sync', included: false },
+      { text: 'Ultra Research Modus', included: false },
+      { text: 'Marketplace & Provider', included: false },
+      { text: 'HubSpot Integration', included: false },
+      { text: 'Advanced Analytics', included: false },
+      { text: 'Vertex AI Coach', included: false },
+      { text: 'Multiteam-Management', included: false },
+      { text: 'API-Zugang', included: false },
+      { text: 'Dezentrierter Support', included: false },
+      { text: 'Custom SLAs', included: false },
+      { text: 'On-Premise Deployment', included: false },
+    ],
+  },
+  {
+    title: 'Pro',
+    subtitle: 'Für Power-User',
     price: '49€',
-    period: 'pro Monat',
-    description: 'Perfekt für Solo-Vertriebler und kleine Teams',
+    period: '/ Monat',
+    description: 'Maximale Effizienz für Einzelkämpfer und kleine Teams.',
+    buttonText: 'Jetzt upgraden',
     features: [
-      '100 Research-Anfragen pro Monat',
-      'Basis KI-Analyse',
-      'E-Mail Support',
-      'HubSpot Integration',
-      'DSGVO-konform',
+      { text: '100 Deep Researches pro Monat', included: true },
+      { text: 'Erweiterter Life Coach', included: true },
+      { text: 'Google Calendar Sync', included: true },
+      { text: 'Ultra Research Modus', included: true },
+      { text: 'Marketplace & Provider', included: false },
+      { text: 'HubSpot Integration', included: false },
+      { text: 'Advanced Analytics', included: false },
+      { text: 'Vertex AI Coach', included: false },
+      { text: 'Multiteam-Management', included: false },
+      { text: 'API-Zugang', included: false },
+      { text: 'Dezentrierter Support', included: false },
+      { text: 'Custom SLAs', included: false },
+      { text: 'On-Premise Deployment', included: false },
     ],
-    cta: 'Jetzt starten',
-    popular: false,
+    highlight: true,
   },
   {
-    name: 'Professional',
-    price: '149€',
-    period: 'pro Monat',
-    description: 'Für wachsende Vertriebsteams',
+    title: 'Business',
+    subtitle: 'Für Vertriebsteams',
+    price: '99€',
+    period: '/ Monat',
+    description: 'Skalierbare Lösung für wachsende Vertriebsabteilungen.',
+    buttonText: 'Jetzt upgraden',
     features: [
-      '500 Research-Anfragen pro Monat',
-      'Erweiterte KI-Analyse',
-      'Prioritäts-Support',
-      'HubSpot + Salesforce Integration',
-      'Team-Kollaboration',
-      'Custom Reports',
+      { text: '250 Deep Researches pro Monat', included: true },
+      { text: 'HubSpot Integration', included: false },
+      { text: 'Marketplace & Provider', included: true },
+      { text: 'Advanced Analytics', included: true },
+      { text: 'Vertex AI Coach', included: true },
+      { text: 'Multiteam-Management', included: false },
+      { text: 'API-Zugang', included: false },
+      { text: 'Dezentrierter Support', included: false },
+      { text: 'Custom SLAs', included: false },
+      { text: 'On-Premise Deployment', included: false },
     ],
-    cta: 'Jetzt starten',
-    popular: true,
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: 'auf Anfrage',
-    description: 'Für große Vertriebsorganisationen',
+    title: 'Enterprise',
+    subtitle: 'Für große Teams',
+    price: 'Individuell',
+    period: '',
+    description: 'Maßgeschneiderte Lösungen für Ihre komplexesten Anforderungen.',
+    buttonText: 'Kontakt aufnehmen',
     features: [
-      'Unbegrenzte Research-Anfragen',
-      'Premium KI-Analyse + Custom Models',
-      'Dedicated Account Manager',
-      'Alle CRM-Integrationen',
-      'Advanced Analytics',
-      'SLA-Garantie',
-      'Custom Onboarding',
+      { text: 'Unlimited Researches', included: true },
+      { text: 'Multiteam-Management', included: true },
+      { text: 'HubSpot Integration', included: true },
+      { text: 'API-Zugang', included: true },
+      { text: 'Dezentrierter Support', included: true },
+      { text: 'Custom SLAs', included: true },
+      { text: 'On-Premise Deployment', included: true },
     ],
-    cta: 'Kontakt aufnehmen',
-    popular: false,
   },
 ];
 
 export default function PricingPage() {
   return (
-    <div className="pt-24 pb-24">
-      <div className="container px-4 md:px-6">
-        <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center py-12">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            Transparente Preise für{' '}
-            <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
-              jeden Bedarf
-            </span>
-          </h1>
-          <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            Starten Sie kostenlos oder wählen Sie den Plan, der zu Ihrem Business passt.
-            Jederzeit kündbar.
+    <section className="w-full py-12 md:py-24 lg:py-32">
+      <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+        <div className="space-y-3">
+          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+            Flexible Pricing-Pläne für jedes Team
+          </h2>
+          <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Wählen Sie den Plan, der am besten zu Ihren Anforderungen passt.
           </p>
         </div>
-
-        <div className="grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto mt-12">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`relative flex flex-col rounded-lg border ${
-                plan.popular
-                  ? 'border-primary shadow-lg scale-105'
-                  : 'border-border'
-              } bg-card p-8`}
+        <div className="mx-auto grid max-w-5xl items-start gap-6 lg:grid-cols-4 lg:gap-8">
+          {pricingPlans.map((plan) => (
+            <Card
+              key={plan.title}
+              className={`flex flex-col ${plan.highlight ? 'border-primary shadow-lg' : ''}`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
-                    Beliebtester Plan
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl font-bold">
+                  {plan.title}
+                </CardTitle>
+                <CardDescription>{plan.subtitle}</CardDescription>
+                <div className="mt-4 text-4xl font-bold">
+                  {plan.price}
+                  <span className="text-lg font-normal text-muted-foreground">
+                    {plan.period}
                   </span>
                 </div>
-              )}
-
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold">{plan.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{plan.description}</p>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex items-baseline">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.period && (
-                    <span className="ml-2 text-muted-foreground">/ {plan.period}</span>
-                  )}
-                </div>
-              </div>
-
-              <ul className="mb-8 space-y-3 flex-1">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-2">
-                    <Check className="h-5 w-5 shrink-0 text-primary" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={
-                  plan.name === 'Enterprise'
-                    ? `mailto:${siteConfig.contact.email}`
-                    : siteConfig.appUrl
-                }
-                className={`inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
-                  plan.popular
-                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                    : 'border border-border bg-background hover:bg-accent hover:text-accent-foreground'
-                }`}
-              >
-                {plan.cta}
-              </Link>
-            </div>
+              </CardHeader>
+              <CardContent className="flex-1">
+                <ul className="space-y-2 text-left">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      {feature.included ? (
+                        <CheckIcon className="h-5 w-5 text-primary" />
+                      ) : (
+                        <XIcon className="h-5 w-5 text-muted-foreground opacity-50" />
+                      )}
+                      <span
+                        className={`${feature.included ? '' : 'text-muted-foreground opacity-50'}`}
+                      >
+                        {feature.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="flex justify-center">
+                <Button className="w-full">
+                  {plan.buttonText}
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
