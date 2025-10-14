@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # IntroGroup Marketing Website
 
 **Marketing-Website** für **Intro Group Germany** – gebaut mit Next.js 14 (App Router), TypeScript, Tailwind CSS und shadcn/ui.
@@ -141,9 +140,9 @@ CNAME | www  | cname.vercel-dns.com
 ```
 .
 ├── app/
+│   ├── layout.tsx                       # Root Layout
 │   ├── demo/page.tsx                    # Demo-Seite für Hero-Component
 │   ├── (marketing)/[locale]/            # Locale-basiertes Routing (de/en)
-│   │   ├── layout.tsx                   # Root Layout
 │   │   ├── page.tsx                     # Homepage
 │   │   └── ...                          # Weitere Marketing-Seiten
 │   └── api/
@@ -340,7 +339,3 @@ Proprietary – Intro Group Germany
 ## 👥 Support
 
 Bei Fragen: `hello@introgroupgermany.com`
-
-=======
-h
->>>>>>> 2bb5ec97fe3d53e0cb4c4a420c5b3c226bd522ec
