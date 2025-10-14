@@ -26,7 +26,12 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/de" className="text-xl font-bold tracking-tight">
+            <Link href="/de" className="flex items-center gap-2 text-xl font-bold tracking-tight">
+              <img
+                src="/logo.png"
+                alt="Intro Group Germany Logo"
+                className="h-8 w-8 rounded-full"
+              />
               {siteConfig.name}
             </Link>
           </div>

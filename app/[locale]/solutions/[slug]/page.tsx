@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, Brain, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import { AuroraBackground } from '@/components/ui/aurora-background';
 import { siteConfig } from '@/config/site';
 import { Compare } from '@/components/ui/compare';
+import { Stepper, Step } from '@/components/ui/stepper';
+import { SparklesCore } from '@/components/ui/sparkles';
 
 const solutions = {
   'b2b-prospecting': {
@@ -116,28 +118,47 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
 
       <div className="container px-4 py-16 md:px-6">
         <div className="mx-auto flex justify-center">
-          <Compare
-            firstImage="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&h=720&fit=crop" 
-            secondImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&h=240&q=80" 
-            firstImageClassName="object-cover object-left-top"
-            secondImageClassname="object-cover object-left-top"
-            className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
-            slideMode="hover"
-          />
+          <div className="relative">
+            <Compare
+              firstImage="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&h=720&fit=crop" 
+              secondImage="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&h=240&q=80" 
+              firstImageClassName="object-cover object-left-top"
+              secondImageClassname="object-cover object-left-top"
+              className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
+              slideMode="hover"
+            />
+            <SparklesCore
+              id="tsparticlesfullpage"
+              background="transparent"
+              minSize={0.6}
+              maxSize={1.4}
+              particleDensity={100}
+              className="absolute inset-0 h-full w-full"
+              particleColor="#FFFFFF"
+            />
+          </div>
         </div>
 
         <div className="mx-auto mt-24 max-w-4xl">
           <h2 className="mb-12 text-center text-3xl font-bold">So funktioniert es</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {solution.howItWorks.map((step, idx) => (
-              <div key={idx} className="text-center">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary">
-                  {idx + 1}
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{step.step}</h3>
-                <p className="text-muted-foreground">{step.desc}</p>
-              </div>
-            ))}
+          <div className="flex w-full flex-col gap-4">
+            <Stepper initialStep={0} steps={solution.howItWorks.map((step, idx) => ({
+              label: step.step,
+              description: step.desc,
+              icon: idx === 0 ? Sparkles : idx === 1 ? Brain : Rocket,
+            }))} orientation="vertical">
+              {solution.howItWorks.map((stepProps, _index) => {
+                return (
+                  <Step key={stepProps.step} {...stepProps}>
+                    <div className="bg-secondary text-primary my-2 flex h-40 items-center justify-center rounded-md border">
+                      <h1 className="text-xl">
+                        {stepProps.step}
+                      </h1>
+                    </div>
+                  </Step>
+                );
+              })}
+            </Stepper>
           </div>
         </div>
 

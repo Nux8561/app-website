@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { siteConfig } from '@/config/site';
-import { Footer } from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -89,7 +88,6 @@ export default function MarketingLayout({
       <body className="min-h-screen bg-background font-sans antialiased">
         <div className="relative flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
-          <Footer />
         </div>
       </body>
     </html>

@@ -58,6 +58,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="de" suppressHydrationWarning className={inter.variable}>
         <head>
+          <link rel="canonical" href="https://web.introki.app" />
+          <link rel="alternate" hrefLang="de" href="https://web.introki.app" />
+          <link rel="alternate" hrefLang="x-default" href="https://web.introki.app" />
+          <meta name="referrer" content="origin-when-cross-origin" />
           {plausibleDomain && (
             <script
               defer

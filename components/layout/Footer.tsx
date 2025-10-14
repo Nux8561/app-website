@@ -27,8 +27,8 @@ const data = {
   },
   contact: {
     email: siteConfig.contact.email,
-    phone: '+49 123 456789',
-    address: 'Berlin, Germany',
+    phone: '015679649483',
+    address: 'Stuttgart, Germany',
   },
   company: {
     name: siteConfig.name,

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import { Shield, Lock, FileCheck, Server, Users, Mail } from 'lucide-react';
+import { Shield, Lock, FileCheck, Server, Users, Mail, Key } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
 
 export const metadata: Metadata = {
   title: 'Security & Trust',
@@ -21,27 +22,54 @@ export default function SecurityPage() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
-          <SecurityCard
-            icon={<Lock className="h-6 w-6" />}
-            title="DSGVO-Konformität"
-            description="Vollständige Einhaltung der EU-Datenschutz-Grundverordnung. Alle Daten werden ausschließlich in der EU verarbeitet und gespeichert."
-          />
-          <SecurityCard
-            icon={<Server className="h-6 w-6" />}
-            title="EU-Hosting"
-            description="Ihre Daten verlassen niemals die Europäische Union. Hosting bei zertifizierten EU-Rechenzentren mit höchsten Sicherheitsstandards."
-          />
-          <SecurityCard
-            icon={<FileCheck className="h-6 w-6" />}
-            title="ISO 27001"
-            description="Unser Informationssicherheits-Managementsystem ist ISO 27001 zertifiziert und wird regelmäßig auditiert."
-          />
-          <SecurityCard
-            icon={<Users className="h-6 w-6" />}
-            title="Auftragsverarbeitung"
-            description="Standardisierte AVV (Auftragsverarbeitungsverträge) für alle Kunden. DPA auf Anfrage verfügbar."
-          />
+        <div className="mx-auto mt-16 max-w-5xl">
+          <BentoGrid className="lg:grid-rows-3">
+            <BentoCard
+              Icon={Lock}
+              name="DSGVO-Konformität"
+              description="Vollständige Einhaltung der EU-Datenschutz-Grundverordnung. Alle Daten werden ausschließlich in der EU verarbeitet und gespeichert."
+              href="/de/legal/datenschutz"
+              cta="Mehr erfahren"
+              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              className="lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3"
+            />
+            <BentoCard
+              Icon={Server}
+              name="EU-Hosting"
+              description="Ihre Daten verlassen niemals die Europäische Union. Hosting bei zertifizierten EU-Rechenzentren mit höchsten Sicherheitsstandards."
+              href="/de/contact"
+              cta="Kontakt aufnehmen"
+              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3"
+            />
+            <BentoCard
+              Icon={FileCheck}
+              name="ISO 27001"
+              description="Unser Informationssicherheits-Managementsystem ist ISO 27001 zertifiziert und wird regelmäßig auditiert."
+              href="/de/legal/agb"
+              cta="Zertifikat ansehen"
+              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              className="lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4"
+            />
+            <BentoCard
+              Icon={Users}
+              name="Auftragsverarbeitung"
+              description="Standardisierte AVV (Auftragsverarbeitungsverträge) für alle Kunden. DPA auf Anfrage verfügbar."
+              href="/de/contact"
+              cta="AVV anfordern"
+              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              className="lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2"
+            />
+            <BentoCard
+              Icon={Key}
+              name="Verschlüsselung"
+              description="Ende-zu-Ende Verschlüsselung für alle Datenübertragungen und -speicherung nach höchsten Sicherheitsstandards."
+              href="/de/contact"
+              cta="Technische Details"
+              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              className="lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4"
+            />
+          </BentoGrid>
         </div>
 
         <div className="mx-auto mt-24 max-w-4xl">
@@ -99,23 +127,4 @@ export default function SecurityPage() {
   );
 }
 
-function SecurityCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="rounded-lg border border-border bg-card p-6">
-      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-        {icon}
-      </div>
-      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
 
