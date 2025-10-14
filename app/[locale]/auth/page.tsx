@@ -24,8 +24,8 @@ export default function AuthPage() {
               card: 'shadow-lg',
             },
           }}
-          afterSignInUrl={siteConfig.appUrl}
-          afterSignUpUrl={siteConfig.appUrl}
+          fallbackRedirectUrl={siteConfig.appUrl}
+          forceRedirectUrl={siteConfig.appUrl}
           routing="path"
           path="/de/auth"
         />

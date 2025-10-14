@@ -49,11 +49,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden items-center gap-4 md:flex">
             <SignedOut>
-              <SignInButton
-                mode="modal"
-                afterSignInUrl={siteConfig.appUrl}
-                afterSignUpUrl={siteConfig.appUrl}
-              >
+              <SignInButton mode="modal">
                 <button className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                   Anmelden
                 </button>
@@ -118,11 +114,7 @@ export function Navbar() {
             ))}
             <div className="mt-4 space-y-2 px-3">
               <SignedOut>
-                <SignInButton
-                  mode="modal"
-                  afterSignInUrl={siteConfig.appUrl}
-                  afterSignUpUrl={siteConfig.appUrl}
-                >
+                <SignInButton mode="modal">
                   <button className="w-full rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
                     Anmelden
                   </button>
