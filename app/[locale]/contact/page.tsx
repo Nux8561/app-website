@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
 import { Mail, Phone, Linkedin, Send, CheckCircle } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 

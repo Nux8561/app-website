@@ -20,10 +20,10 @@ export default function AGBPage() {
       <div className="prose prose-gray max-w-none dark:prose-invert">
         <h2>§ 1 Geltungsbereich</h2>
         <p>
-          Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten für alle
+          Diese Allgemeinen Geschäftsbedingungen (nachfolgend &quot;AGB&quot;) gelten für alle
           Verträge über die Nutzung der Software-as-a-Service (SaaS) Plattform{' '}
-          {siteConfig.product} (nachfolgend „Dienst") zwischen {siteConfig.name}{' '}
-          (nachfolgend „Anbieter") und dem Nutzer (nachfolgend „Kunde").
+          {siteConfig.product} (nachfolgend &quot;Dienst&quot;) zwischen {siteConfig.name}{' '}
+          (nachfolgend &quot;Anbieter&quot;) und dem Nutzer (nachfolgend &quot;Kunde&quot;).
         </p>
 
         <h2>§ 2 Vertragsgegenstand</h2>

@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
+import { siteConfig } from '@/config/site';
+import { Footer } from '@/components/layout/Footer';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Intro Group Germany | Sales Intelligence mit KI',
-    template: '%s | Intro Group Germany',
+    default: `${siteConfig.product} | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    'IntroGroup Sales Intelligence – KI-gestützte Vertriebsintelligenz für den deutschen B2B-Mittelstand. Deep Research in unter 60 Sekunden.',
+  description: siteConfig.description,
   keywords: [
     'Sales Intelligence',
     'KI im Vertrieb',
@@ -15,26 +19,21 @@ export const metadata: Metadata = {
     'Deep Research',
     'Vertriebsintelligenz',
   ],
-  authors: [{ name: 'Intro Group Germany' }],
-  creator: 'Intro Group Germany',
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ||
-      `https://${process.env.NEXT_PUBLIC_MARKETING_DOMAIN || 'de.introgroup'}`
-  ),
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: 'website',
     locale: 'de_DE',
-    url: '/',
-    siteName: 'Intro Group Germany',
-    title: 'Intro Group Germany | Sales Intelligence mit KI',
-    description:
-      'IntroGroup Sales Intelligence – KI-gestützte Vertriebsintelligenz für den deutschen B2B-Mittelstand.',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.product} | ${siteConfig.name}`,
+    description: siteConfig.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Intro Group Germany | Sales Intelligence mit KI',
-    description:
-      'IntroGroup Sales Intelligence – KI-gestützte Vertriebsintelligenz für den deutschen B2B-Mittelstand.',
+    title: `${siteConfig.product} | ${siteConfig.name}`,
+    description: siteConfig.description,
   },
   robots: {
     index: true,
@@ -50,9 +49,25 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const plausibleDomain = siteConfig.analytics.plausibleDomain;
+
   return (
-    <html lang="de" suppressHydrationWarning>
-      <body>{children}</body>
+    <html lang="de" suppressHydrationWarning className={inter.variable}>
+      <head>
+        {plausibleDomain && (
+          <script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+          />
+        )}
+      </head>
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <div className="relative flex min-h-screen flex-col">
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }

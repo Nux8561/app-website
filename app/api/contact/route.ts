@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name muss mindestens 2 Zeichen lang sein'),
@@ -23,11 +23,12 @@ export async function POST(req: Request) {
       );
     }
 
-    const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM || 'Intro Group <no-reply@introgroupgermany.com>',
-      to: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@introgroupgermany.com',
-      subject: `Neue Kontaktanfrage von ${validatedData.name}`,
-      text: `
+    const { data, error } = resend
+      ? await resend.emails.send({
+          from: process.env.RESEND_FROM || 'Intro Group <no-reply@introgroupgermany.com>',
+          to: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@introgroupgermany.com',
+          subject: `Neue Kontaktanfrage von ${validatedData.name}`,
+          text: `
 Name: ${validatedData.name}
 E-Mail: ${validatedData.email}
 ${validatedData.company ? `Unternehmen: ${validatedData.company}` : ''}
@@ -35,7 +36,8 @@ ${validatedData.company ? `Unternehmen: ${validatedData.company}` : ''}
 Nachricht:
 ${validatedData.message}
       `,
-    });
+        })
+      : { data: null, error: null };
 
     if (error) {
       console.error('Resend Error:', error);
