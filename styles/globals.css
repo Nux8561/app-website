@@ -33,6 +33,12 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    /* Brand additions (can be aligned to app/microsite) */
+    --brand-gradient-from: 222 90% 60%;
+    --brand-gradient-via: 258 90% 70%;
+    --brand-gradient-to: 188 90% 60%;
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
   }
 
   .dark {

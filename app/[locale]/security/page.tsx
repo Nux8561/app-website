@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Shield, Lock, FileCheck, Server, Users, Mail, Key } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
+import { Container } from '@/components/primitives/Container';
+import { Section } from '@/components/primitives/Section';
+import { PageHeader } from '@/components/primitives/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Security & Trust',
@@ -11,18 +14,15 @@ export const metadata: Metadata = {
 export default function SecurityPage() {
   return (
     <div className="pt-24 pb-24">
-      <div className="container px-4 md:px-6">
-        <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center py-12">
-          <Shield className="h-16 w-16 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            Security & Trust Center
-          </h1>
-          <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            Ihre Daten und Privatsphäre stehen bei uns an erster Stelle
-          </p>
-        </div>
+      <Container className="px-4 md:px-6">
+        <Section>
+          <div className="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center">
+            <Shield className="h-16 w-16 text-primary" />
+            <PageHeader title="Security & Trust Center" subtitle="Ihre Daten und Privatsphäre stehen bei uns an erster Stelle" />
+          </div>
+        </Section>
 
-        <div className="mx-auto mt-16 max-w-5xl">
+        <div className="mx-auto mt-4 max-w-5xl">
           <BentoGrid className="lg:grid-rows-3">
             <BentoCard
               Icon={Lock}
@@ -30,7 +30,7 @@ export default function SecurityPage() {
               description="Vollständige Einhaltung der EU-Datenschutz-Grundverordnung. Alle Daten werden ausschließlich in der EU verarbeitet und gespeichert."
               href="/de/legal/datenschutz"
               cta="Mehr erfahren"
-              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              background={<img className="absolute -right-20 -top-20 opacity-60" alt="Dekoratives Muster" />}
               className="lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3"
             />
             <BentoCard
@@ -39,7 +39,7 @@ export default function SecurityPage() {
               description="Ihre Daten verlassen niemals die Europäische Union. Hosting bei zertifizierten EU-Rechenzentren mit höchsten Sicherheitsstandards."
               href="/de/contact"
               cta="Kontakt aufnehmen"
-              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              background={<img className="absolute -right-20 -top-20 opacity-60" alt="Dekoratives Muster" />}
               className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3"
             />
             <BentoCard
@@ -48,7 +48,7 @@ export default function SecurityPage() {
               description="Unser Informationssicherheits-Managementsystem ist ISO 27001 zertifiziert und wird regelmäßig auditiert."
               href="/de/legal/agb"
               cta="Zertifikat ansehen"
-              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              background={<img className="absolute -right-20 -top-20 opacity-60" alt="Dekoratives Muster" />}
               className="lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4"
             />
             <BentoCard
@@ -57,7 +57,7 @@ export default function SecurityPage() {
               description="Standardisierte AVV (Auftragsverarbeitungsverträge) für alle Kunden. DPA auf Anfrage verfügbar."
               href="/de/contact"
               cta="AVV anfordern"
-              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              background={<img className="absolute -right-20 -top-20 opacity-60" alt="Dekoratives Muster" />}
               className="lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2"
             />
             <BentoCard
@@ -66,7 +66,7 @@ export default function SecurityPage() {
               description="Ende-zu-Ende Verschlüsselung für alle Datenübertragungen und -speicherung nach höchsten Sicherheitsstandards."
               href="/de/contact"
               cta="Technische Details"
-              background={<img className="absolute -right-20 -top-20 opacity-60" />}
+              background={<img className="absolute -right-20 -top-20 opacity-60" alt="Dekoratives Muster" />}
               className="lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4"
             />
           </BentoGrid>
@@ -122,7 +122,7 @@ export default function SecurityPage() {
             security@{siteConfig.contact.email.split('@')[1]}
           </a>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

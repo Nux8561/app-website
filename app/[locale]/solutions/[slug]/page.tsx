@@ -7,6 +7,8 @@ import { siteConfig } from '@/config/site';
 import { Compare } from '@/components/ui/compare';
 import { Stepper, Step } from '@/components/ui/stepper';
 import { SparklesCore } from '@/components/ui/sparkles';
+import { Container } from '@/components/primitives/Container';
+import { Section } from '@/components/primitives/Section';
 
 const solutions = {
   'b2b-prospecting': {
@@ -106,17 +108,20 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
   return (
     <div className="pt-24">
       <AuroraBackground>
-        <div className="container px-4 py-24 md:px-6">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              {solution.title}
-            </h1>
-            <p className="mt-6 text-xl text-muted-foreground">{solution.description}</p>
-          </div>
-        </div>
+        <Section>
+          <Container className="px-4 md:px-6">
+            <div className="mx-auto max-w-4xl text-center">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                {solution.title}
+              </h1>
+              <p className="mt-6 text-xl text-muted-foreground">{solution.description}</p>
+            </div>
+          </Container>
+        </Section>
       </AuroraBackground>
 
-      <div className="container px-4 py-16 md:px-6">
+      <Section>
+        <Container className="px-4 md:px-6">
         <div className="mx-auto flex justify-center">
           <div className="relative">
             <Compare
@@ -171,7 +176,8 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
-      </div>
+        </Container>
+      </Section>
     </div>
   );
 }
